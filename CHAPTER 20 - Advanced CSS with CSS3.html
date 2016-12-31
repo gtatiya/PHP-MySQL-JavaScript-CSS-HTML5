@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CHAPTER 20 - Advanced CSS with CSS3</title>
+
+<style>
+/*Example :20-1:</b><br>
+  Using multiple images in a background*/
+  
+      .border {
+        font-family:'Times New Roman';
+        font-style :italic;
+        font-size  :170%;
+        text-align :center;
+        padding    :60px;
+        width      :350px;
+        height     :500px;
+        background :url('CHAPTER 20 - b1.gif') top    left  no-repeat,
+                    url('CHAPTER 20 - b2.gif') top    right no-repeat,
+                    url('CHAPTER 20 - b3.gif') bottom left  no-repeat,
+                    url('CHAPTER 20 - b4.gif') bottom right no-repeat,
+                    url('CHAPTER 20 - ba.gif') top          repeat-x,
+                    url('CHAPTER 20 - bb.gif') left         repeat-y,
+                    url('CHAPTER 20 - bc.gif') right        repeat-y,
+                    url('CHAPTER 20 - bd.gif') bottom       repeat-x
+      }
+	  
+	  /*Example :20-2:</b><br>
+  The border-radius property*/
+	  .box {
+        margin-bottom:10px;   
+        font-family  :'Courier New', monospace;
+        font-size    :12pt;
+        text-align   :center;
+        padding      :10px;
+        width        :380px;
+        height       :75px;
+        border       :10px solid #006;
+      }
+      .b1 {
+        -moz-border-radius   :40px;
+        -webkit-border-radius:40px;
+        border-radius        :40px;
+      }
+      .b2 {
+        -moz-border-radius   :40px 40px 20px 20px;
+        -webkit-border-radius:40px 40px 20px 20px;
+        border-radius        :40px 40px 20px 20px;
+      }
+      .b3 {
+        -moz-border-radius-topleft        :20px;
+        -moz-border-radius-topright       :40px;
+        -moz-border-radius-bottomleft     :60px;
+        -moz-border-radius-bottomright    :80px;
+        -webkit-border-top-left-radius    :20px;
+        -webkit-border-top-right-radius   :40px;
+        -webkit-border-bottom-left-radius :60px;
+        -webkit-border-bottom-right-radius:80px;
+        border-top-left-radius            :20px;
+        border-top-right-radius           :40px;
+        border-bottom-left-radius         :60px;
+        border-bottom-right-radius        :80px;
+      }
+      .b4 {
+        -moz-border-radius-topleft        :40px 20px;
+        -moz-border-radius-topright       :40px 20px;
+        -moz-border-radius-bottomleft     :20px 40px;
+        -moz-border-radius-bottomright    :20px 40px;
+        -webkit-border-top-left-radius    :40px 20px;
+        -webkit-border-top-right-radius   :40px 20px;
+        -webkit-border-bottom-left-radius :20px 40px;
+        -webkit-border-bottom-right-radius:20px 40px;
+        border-top-left-radius            :40px 20px;
+        border-top-right-radius           :40px 20px;
+        border-bottom-left-radius         :20px 40px;
+        border-bottom-right-radius        :20px 40px;
+      }
+	  
+	  /*Example :20-3:</b><br>
+  Using CSS to create multiple columns*/
+  .columns {
+        text-align          :justify;
+        font-size           :16pt;
+        -moz-column-count   :4;
+        -moz-column-gap     :1em;
+        -moz-column-rule    :2px solid black;
+        -webkit-column-count:4;
+        -webkit-column-gap  :1em;
+        -webkit-column-rule :2px solid black;
+        column-count        :4;
+        column-gap          :1em;
+        column-rule         :2px solid black;
+      }
+  
+  /*Google Web Fonts*/
+  h1 { font-family:'Lobster', arial, serif; }
+  
+  /*Example :20-4:</b><br>
+  A transition on hover effect*/
+  #square {
+        position          :absolute;
+        top               :50px;
+        left              :50px;
+        width             :100px;
+        height            :100px;
+        padding           :2px;
+        text-align        :center;
+        border-width      :1px;
+        border-style      :solid;
+        background        :orange;
+        transition        :all .8s ease-in-out;
+        -moz-transition   :all .8s ease-in-out;
+        -webkit-transition:all .8s ease-in-out;
+        -o-transition     :all .8s ease-in-out;
+        -ms-transition    :all .8s ease-in-out;
+      }
+      #square:hover {
+        background        :yellow;
+        -moz-transform    :rotate(180deg);
+        -webkit-transform :rotate(180deg);
+        -o-transform      :rotate(180deg);
+        -ms-transform     :rotate(180deg);
+        transform         :rotate(180deg);
+      }
+  
+    </style>
+    <!--Google Web Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Lobster"
+rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<b>Example 20-1:</b><br>
+  //Using multiple images in a background
+<div class="border">
+      <h1>Employee of the month</h1>
+      <h2>Awarded To:</h2>
+      <h3>__________________</h3>
+      <h2>Date:</h2>
+      <h3>___/___/_____</h3>
+    </div>
+    
+    <br><b>Example 20-2:</b><br>
+  //The border-radius property
+  <div class="box b1">
+      border-radius:40px;
+    </div>
+
+    <div class="box b2">
+      border-radius:40px 40px 20px 20px;
+    </div>
+
+    <div class="box b3">
+      border-top-left-radius &nbsp;&nbsp;&nbsp;:20px;<br>
+      border-top-right-radius &nbsp;&nbsp;:40px;<br>
+      border-bottom-left-radius :60px;<br>
+      border-bottom-right-radius:80px;
+    </div>
+
+    <div class="box b4">
+      border-top-left-radius &nbsp;&nbsp;&nbsp;:40px 20px;<br>
+      border-top-right-radius &nbsp;&nbsp;:40px 20px;<br>
+      border-bottom-left-radius :20px 40px;<br>
+      border-bottom-right-radius:20px 40px;
+    </div><br>
+    
+    <!--Box Shadows-->
+    <div style="box-shadow:15px 15px 10px #888;">
+      border-bottom-right-radius:20px 40px;
+    </div><br><br>
+
+    <!--Element Overflow-->
+    <div style="width: 12em;
+     height: 6em;
+     border: dotted; overflow: auto;">
+      border-bottom-right-radius:20px 40px; border-bottom-right-radius:20px 40px; border-bottom-right-radius:20px 40px; border-bottom-right-radius:20px 40px; border-bottom-right-radius:20px 40px; border-bottom-right-radius:20px 40px;
+    </div>
+    
+        <br><b>Example 20-3:</b><br>
+  //Using CSS to create multiple columns
+  <div class="columns">
+      Now is the winter of our discontent
+      Made glorious summer by this sun of York;
+      And all the clouds that lour'd upon our house
+      In the deep bosom of the ocean buried.
+      Now are our brows bound with victorious wreaths;
+      Our bruised arms hung up for monuments;
+      Our stern alarums changed to merry meetings,
+      Our dreadful marches to delightful measures.
+      Grim-visaged war hath smooth'd his wrinkled front;
+      And now, instead of mounting barded steeds
+      To fright the souls of fearful adversaries,
+      He capers nimbly in a lady's chamber
+      To the lascivious pleasing of a lute.
+    </div><br><br>
+    
+    <!--Colors and Opacity
+    HSL Colors-->
+    <div style="color:hsl(60, 100%, 50%);">
+      Now is the winter of our discontent
+    </div>
+    <div style="color:hsl(240, 100%, 40%);">
+      Now is the winter of our discontent
+    </div>
+    <!--HSLA Colors-->
+    <div style="color:hsla(60, 100%, 50%, 0.3);">
+      Now is the winter of our discontent
+    </div>
+    <div style="color:hsla(240, 100%, 60%, 0.82);">
+      Now is the winter of our discontent
+    </div>
+    <!--RGB Colors-->
+    <div style="color:#ffff00;">
+      Now is the winter of our discontent
+    </div>
+    <div style="color:rgb(255, 255, 0);">
+      Now is the winter of our discontent
+    </div>
+    <div style="color:rgb(100%, 100%, 0%);">
+      Now is the winter of our discontent
+    </div>
+    <!--RGBA Colors-->
+    <div style="color:rgba(0%, 40%, 60%, 0.4);">
+      Now is the winter of our discontent
+    </div>
+    <!--The opacity Property-->
+    <div style="opacity:0.75;">
+      Now is the winter of our discontent
+    </div><br>
+    
+    <!--Text Effects
+    The text-shadow Property-->
+    <div style="text-shadow:3px 3px 4px #444;">
+      Now is the winter of our discontent
+    </div>
+    
+<!--Google Web Fonts-->
+<h1>Hello</h1><br>
+
+<!--Transformations-->
+<div style="transform:scale(1.5, 2) rotate(45deg);">
+     transform:scale(1.5, 2) rotate(45deg);
+    </div>
+    
+<!--    3D Transformations-->    
+  <p style="transform:perspective(200px) rotateX(10deg) rotateY(20deg) rotateZ(30deg);">
+     transform:perspective(200px) rotateX(10deg) rotateY(20deg) rotateZ(30deg);
+    </p>  
+
+<br><b>Example 20-4:</b><br>
+  //A transition on hover effect
+  <div id="square">
+      Square shape<br>
+      created using<br>
+      a simple div<br>
+      element with<br>
+      a 1px border
+    </div>
+    
+    
+    
+    
+    
+</body>
+</html>

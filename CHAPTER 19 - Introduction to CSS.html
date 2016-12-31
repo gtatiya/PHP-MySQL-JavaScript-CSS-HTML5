@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CHAPTER 19 - Introduction to CSS</title>
+    <style>
+      h1 {
+        color      :red;
+        font-size  :3em;
+        font-family:Arial;
+      }	  
+	  	  
+	  /*Using IDs*/
+	  #welcome { font-style:italic; color:green; }
+	  
+	  /*Using Classes*/
+	  .welcome { font-style:italic; color:orange; }
+	  
+	  /*The Descendant Selector*/
+	  ol ol { list-style-type:lower-alpha; }
+	  
+	  /*The Child Selector*/
+	  p b { color:red; }
+	  
+	  ol > li { font-weight:bold; }
+	  
+	  /*The ID Selector*/
+	  #myid { font-style:italic; }
+	  
+	  /*Example 19-2:</b><br>
+  Div and span example*/
+	  div, span { border          :1px solid black; }
+      div       { background-color:yellow;          }
+      span      { background-color:cyan;            }
+	  
+	  /*Example 19-3:</b><br>
+  Creating a linear gradient*/
+	  .orangegrad {
+        background:orange;
+        background:linear-gradient(top, #fb0, #f50);
+        background:-moz-linear-gradient(top, #fb0, #f50);
+        background:-webkit-linear-gradient(top, #fb0, #f50);
+        background:-o-linear-gradient(top, #fb0, #f50);
+        background:-ms-linear-gradient(top, #fb0, #f50); }
+		
+		/*Example 19-4:</b><br>
+  Applying different positioning values*/
+		#object1 {
+        position  :absolute;
+        background:pink;
+        width     :100px;
+        height    :100px;
+        top       :100px;
+        left      :0px;
+      }
+      #object2 {
+        position  :relative;
+        background:lightgreen;
+        width     :100px;
+        height    :100px;
+        top       :-8px;
+        left      :110px;
+      }
+      #object3 {
+        position  :fixed;
+        background:yellow;
+        width     :100px;
+        height    :100px;
+        top       :100px;
+        left      :236px;
+      }
+	  
+	  /*Example 19-5:</b><br>
+  Link and focus pseudo-classes*/
+	  a:link    { color:blue; }
+      a:visited { color:gray; }
+      a:hover   { color:red; }
+      a:active  { color:purple; }
+      /**:focus   { background:yellow; }*/
+	  *:focus { border:2px dotted #ff8800; } /*Shorthand Rules*/
+	  
+	  /*Example 19-6:</b><br>
+  How margins are applied*/
+  #object4 {
+        background  :lightgreen;
+        border-style:solid;
+        border-width:1px;
+        font-family :"Courier New";
+        font-size   :9px;
+        width       :100px;
+        height      :100px;
+        padding     :5px;
+        margin      :10px 20px 30px 40px;
+      }
+      table {
+        padding     :0;
+        border      :1px solid black;
+        background  :cyan;
+      }
+	  
+	  /*Example 19-7:</b><br>
+  Applying padding*/
+	  #object5 {
+        border-style:solid;
+        border-width:1px;
+        background  :orange;
+        color       :darkred;
+        font-family :Arial;
+        font-size   :12px;
+        text-align  :justify;
+        display     :table-cell;
+        width       :148px;
+        padding     :10px 20px 30px 40px; }
+	  
+    </style>
+  </head>
+  <body>
+ 
+ <b style="font-size: 30px;">Learning PHP, MySQL, JavaScript, CSS & HTML5, 3e (2014)</b><br><br>
+  <b style="font-size: 20px;">CHAPTER 19 - Introduction to CSS</b><br><br>
+  
+  <b>Example 19-1:</b><br>
+  //A simple HTML page
+    <h1>Hello there</h1>
+    
+    <!--Embedded Style Settings-->
+    <div style="font-style:italic; color:blue;">Hello there</div><br>
+    
+    <!--Using IDs-->
+<div id="welcome">Hello there</div><br>
+
+<!--Using Classes-->
+<div class="welcome">Hello</div><br>
+
+<!--Inline Styles-->
+<a href="http://google.com" style="color:green;">Visit Google</a>
+
+<!--The Descendant Selector-->
+<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three
+<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ol>
+</li>
+</ol>
+<br>
+
+<!--The Child Selector-->
+<p><i><b>Hello</b> there</i></p>
+<br>
+
+<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ol>
+<ul>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ul>
+
+<!--The ID Selector-->
+<div id="myid">Hello</div> <br>
+
+<!--The Difference Between Div and Span Elements-->
+<div style="border:1px solid green;">Hello</div><br>
+<span style="border:1px solid green;">Hello</span><br><br>
+    
+  <b>Example 19-2:</b><br>
+  //Div and span example  
+    
+    <div>This text is within a div tag</div>
+    This isn't. <div>And this is again.</div><br>
+
+    <span>This text is inside a span tag.</span>
+    This isn't. <span>And this is again.</span><br><br>
+
+    <div>This is a larger amount of text in a div that wraps around
+    to the next line of the browser</div><br>
+
+    <span>This is a larger amount of text in a span that wraps around
+    to the next line of the browser</span><br><br>
+    
+    
+    <!--Measurements-->
+    <div style="margin:5px;">margin:5px;</div>
+    <div style="font-size:14pt;">font-size:14pt;</div>
+    <div style="width:3in;">width:3in;</div>
+    <div style="height:2cm;">height:2cm;</div>
+    <div style="font-size:5mm;">font-size:5mm;</div>
+    <div style="font-size:1pc;">font-size:1pc;</div>
+    <div style="font-size:2em;">font-size:2em;</div>
+    <div style="width:20ex;">width:20ex;</div>
+    <div style="height:120%;">height:120%;</div><br><br>
+
+<!--Fonts and Typography-->
+<div style="font-family:Tahoma, Georgia, serif;">font-family:Tahoma, Georgia, serif;</div>
+
+<div style="font-style:normal; ">font-style:normal;</div>
+<div style="font-style:italic; ">font-style:italic;</div>
+<div style="font-style:oblique; ">font-style:oblique;</div>
+
+<div style="font-size:14pt; ">font-size:14pt;</div>
+<div style="font-size:240%; ">font-size:240%;</div>
+
+<div style="font-weight:bold; ">font-weight:bold;</div>
+
+<!--Managing Text Styles-->
+<div style="text-decoration:underline; ">text-decoration:underline;</div>
+<div style="text-decoration:line-through; ">text-decoration:line-through;</div>
+<div style="text-decoration:overline; ">text-decoration:overline;</div>
+<div style="text-decoration:blink; ">text-decoration:blink;</div>
+
+<!--Spacing-->
+<div style="line-height :125%; word-spacing :30px; letter-spacing:3px; ">line-height :125%; word-spacing :30px; letter-spacing:3px;</div>
+
+<!--Alignment-->
+<div style="text-align:right; ">text-align:justify;</div>
+
+<!--Transformation-->
+<div style="text-transform:uppercase; ">text-transform:uppercase;</div>
+
+<!--Indenting-->
+<div style="text-indent:20px; ">text-indent:200px;</div><br><br>
+
+<!--CSS Colors-->
+<div style="background-color:silver; ">background-color:silver;</div>
+<div style="color:#ff0000; ">color:#ff0000;</div>
+<div style="background-color:rgb(0, 255, 255); ">background-color:rgb(0, 255, 255);</div>
+<div style="background-color:rgb(58%, 95%, 74%); ">background-color:rgb(58%, 95%, 74%);</div>
+<div style="background-color:rgb(23.4%, 67.6%, 15.5%); ">background-color:rgb(23.4%, 67.6%, 15.5%);</div>
+<div style="background-color: #f49; ">background-color: #f49;</div><br><br>
+
+<b>Example 19-3:</b><br> 
+<!--Creating a linear gradient-->
+<div class="orangegrad">Black text<br>
+    on an orange<br>linear gradient</div>
+<div style="background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); ">background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);</div>
+<div style="background-image: radial-gradient(ellipse farthest-corner at 45px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%); ">background-image: radial-gradient(ellipse farthest-corner at 45px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);</div><br><br>
+
+<b>Example 19-4:</b><br> 
+<!--Applying different positioning values-->
+<br><br><br><br><br>
+    <div id="object1">Absolute Positioning</div>
+    <div id="object2">Relative Positioning</div>
+    <div id="object3">Fixed Positioning</div>
+
+<b>Example 19-5:</b><br> 
+<!--Link and focus pseudo-classes-->
+<a href="http://google.com">Link to Google'</a><br>
+    <a href="nowhere">Link to nowhere'</a><br>
+    <input type="text">
+    <br><br><b>Example 19-6:</b><br> 
+<!--How margins are applied-->
+    <table>
+      <tr>
+        <td>
+          <div id="object4">margin:<br>10px 20px 30px 40px;</div>
+        </td>
+      </tr>
+    </table>
+
+<br><br><b>Example 19-7:</b><br> 
+<!--Applying padding-->
+<div id="object5">To be, or not to be that is the question:
+    Whether 'tis Nobler in the mind to suffer
+    The Slings and Arrows of outrageous Fortune,
+    Or to take Arms against a Sea of troubles,
+    And by opposing end them.</div>
+    
+    
+
+    
+    
+</body>
+</html>

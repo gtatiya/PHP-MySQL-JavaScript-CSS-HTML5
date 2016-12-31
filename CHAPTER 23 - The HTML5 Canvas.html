@@ -1,0 +1,814 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CHAPTER 23 - The HTML5 Canvas</title>
+<script src="CHAPTER 22 - OSC.js"></script>
+
+<style>
+      .compositing {
+        font-family:'courier new';
+        font-size  :9pt;
+      }
+    </style>
+    
+</head>
+
+<body>
+<b>Example 23-2:</b><br>
+//Copying a canvas image<br>
+<canvas id="mycanvas" width="320" height="240">
+      This is a canvas element given the ID <i>mycanvas</i>
+      This text is only visible in non-HTML5 browsers
+</canvas>
+
+    <img id="myimage">
+    
+    <script>
+      canvas            = O('mycanvas')
+      context           = canvas.getContext('2d')
+      context.fillStyle = 'red'
+      S(canvas).border  = '1px solid black'
+
+      context.beginPath()
+      context.moveTo(160, 120)
+      context.arc(160, 120, 70, 0, Math.PI * 2, false)
+      context.closePath()
+      context.fill()
+
+      S('myimage').border = '1px solid black'
+      O('myimage').src    = canvas.toDataURL()
+	  
+	  /*Specifying an Image Type*/
+	  /*O('myimage').src = canvas.toDataURL('image/jpeg', 0.4)*/
+	  
+	  /*The fillRect Method
+	  context.fillStyle = 'blue'
+	  context.fillRect(20, 20, 600, 200)*/
+	  
+	  /*The clearRect Method
+	  context.clearRect(40, 40, 560, 160)*/
+	  
+	  /*The strokeRect Method
+	  context.strokeStyle = 'green'
+	  context.strokeRect(60, 60, 520, 120)*/
+	  </script>
+  
+  <br><br><b>Example 23-3:</b><br>
+//Drawing several rectangles<br>
+ <canvas id="mycanvas2" width="640" height="240"></canvas>
+
+    <script>
+      canvas               = O('mycanvas2')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      context.fillStyle    = 'blue'
+      context.strokeStyle  = 'green'
+
+      context.fillRect(  20, 20, 600, 200)
+      context.clearRect( 40, 40, 560, 160)
+      context.strokeRect(60, 60, 520, 120)
+    </script>
+    
+  <br><br><b>Example 23-4:</b><br>
+//Applying a gradient fill<br>
+<script>
+gradient = context.createLinearGradient(0, 80, 640,80)
+      gradient.addColorStop(0, 'white')
+      gradient.addColorStop(1, 'black')
+      context.fillStyle = gradient
+      context.fillRect(80, 80, 480,80)
+</script>
+
+<br><b>Example 23-5:</b><br>
+//A variety of gradients at different angles and colors<br>
+<canvas id="mycanvas3" width="640" height="240"></canvas>
+
+ <script>
+      canvas               = O('mycanvas3')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+ 
+      gradient = context.createLinearGradient(0, 0, 160, 0)
+      gradient.addColorStop(0, 'white')
+      gradient.addColorStop(1, 'black')
+      context.fillStyle = gradient
+      context.fillRect(20, 20, 135, 200)
+
+      gradient = context.createLinearGradient(0, 0, 0, 240)
+      gradient.addColorStop(0, 'yellow')
+      gradient.addColorStop(1, 'red')
+      context.fillStyle = gradient
+      context.fillRect(175, 20, 135, 200)
+
+      gradient = context.createLinearGradient(320, 0, 480, 240)
+      gradient.addColorStop(0, 'green')
+      gradient.addColorStop(1, 'purple')
+      context.fillStyle = gradient
+      context.fillRect(330, 20, 135, 200)
+
+      gradient = context.createLinearGradient(480, 240, 640, 0)
+      gradient.addColorStop(0, 'orange')
+      gradient.addColorStop(1, 'magenta')
+      context.fillStyle = gradient
+      context.fillRect(485, 20, 135, 200)
+    </script>
+
+<br><br><b>Example 23-6:</b><br>
+//Adding multiple color stops<br>
+ <canvas id="mycanvas4" width="640" height="240"></canvas>
+
+    <script>
+      canvas               = O('mycanvas4')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+ 
+      gradient = context.createLinearGradient(0, 0, 640, 0)
+      gradient.addColorStop(0.00, 'red')
+      gradient.addColorStop(0.14, 'orange')
+      gradient.addColorStop(0.28, 'yellow')
+      gradient.addColorStop(0.42, 'green')
+      gradient.addColorStop(0.56, 'blue')
+      gradient.addColorStop(0.70, 'indigo')
+      gradient.addColorStop(0.84, 'violet')
+
+      context.fillStyle = gradient
+      context.fillRect(20, 20, 600, 200)
+    </script>
+    
+ <br><br><b>Example 23-7:</b><br>
+//Creating a radial gradient<br>
+ <canvas id="mycanvas5" width="640" height="240"></canvas>    
+      
+      <script>
+      canvas               = O('mycanvas5')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+ 
+      gradient = context.createRadialGradient(320, 120, 0, 320, 120, 320)
+      gradient.addColorStop(0.00, 'red')
+      gradient.addColorStop(0.14, 'orange')
+      gradient.addColorStop(0.28, 'yellow')
+      gradient.addColorStop(0.42, 'green')
+      gradient.addColorStop(0.56, 'blue')
+      gradient.addColorStop(0.70, 'indigo')
+      gradient.addColorStop(0.84, 'violet')
+
+      context.fillStyle = gradient
+      context.fillRect(20, 20, 600, 200)
+    </script>
+    
+<br><br><b>Example 23-8:</b><br>
+//Stretching a radial gradient<br>
+ <canvas id="mycanvas6" width="640" height="240"></canvas>     
+	  
+     <script>
+      canvas               = O('mycanvas6')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+ 
+      gradient = context.createRadialGradient(0, 120, 0, 480, 120, 480)
+      gradient.addColorStop(0.00, 'red')
+      gradient.addColorStop(0.14, 'orange')
+      gradient.addColorStop(0.28, 'yellow')
+      gradient.addColorStop(0.42, 'green')
+      gradient.addColorStop(0.56, 'blue')
+      gradient.addColorStop(0.70, 'indigo')
+      gradient.addColorStop(0.84, 'violet')
+
+      context.fillStyle = gradient
+      context.fillRect(20, 20, 600, 200)
+    </script>
+    
+ <br><br><b>Example 23-9:</b><br>
+//Using an image for a pattern fill<br>
+ <canvas id="mycanvas7" width="640" height="240"></canvas>
+ 
+ <script>
+      canvas               = O('mycanvas7')
+      context1              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      
+      image     = new Image()
+      image.src = 'CHAPTER 23 - image.png'
+
+      image.onload = function()
+      {
+        pattern           = context1.createPattern(image, 'repeat')
+        context1.fillStyle = pattern
+        context1.fillRect(20, 20, 600, 200)
+      }
+    </script>
+    
+<br><br><b>Example 23-10:</b><br>
+//Writing text to the canvas<br>
+ <canvas id="mycanvas8" width="800" height="160"></canvas>    
+ 
+ <script>
+      canvas               = O('mycanvas8')
+      context              = canvas.getContext('2d')
+      context.font         = 'bold 140px Times'
+      context.textBaseline = 'top'
+      context.strokeText('WickerpediA', 0, 0)
+ </script>
+  
+  <br><b>Example 23-11:</b><br>
+//Filling in the text with a pattern<br>
+ <canvas id="mycanvas9" width="800" height="160"></canvas>  
+    
+    <script>
+      canvas               = O('mycanvas9')
+      context2              = canvas.getContext('2d')
+      context2.font         = 'bold 140px Times'
+      context2.textBaseline = 'top'
+      image1                = new Image()
+      image1.src            = 'CHAPTER 23 - wicker.jpg'
+
+      image1.onload = function()
+      {
+        pattern           = context2.createPattern(image1, 'repeat')
+        context2.fillStyle = pattern
+        context2.fillText(  'WickerpediA', 0, 0)
+        context2.strokeText('WickerpediA', 0, 0)
+      }
+    </script>
+    
+<br><b>Example 23-12:</b><br>
+//Displaying combinations of line caps and joins<br>
+ <canvas id="mycanvas10" width="535" height="360"></canvas>
+ 
+ <script>
+      canvas               = O('mycanvas10')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      context.fillStyle    = 'red'
+      context.font         = 'bold 13pt Courier'
+      context.strokeStyle  = 'blue'
+      context.textBaseline = 'top'
+      context.lineWidth    = 20
+      caps                 = ['butt',  'round', 'square']
+      joins                = ['round', 'bevel', 'miter']
+
+      for (j = 0 ; j < 3 ; ++j)
+      {
+        for (k = 0 ; k < 3 ; ++k)
+        {
+          context.lineCap  = caps[j]
+          context.lineJoin = joins[k]
+
+          context.fillText('cap:' + caps[j],  33 + j * 180, 45 + k * 120)
+          context.fillText('join:' + joins[k], 33 + j * 180, 65 + k * 120)
+
+          context.beginPath()         
+          context.moveTo( 20 + j * 180, 100 + k * 120)
+          context.lineTo( 20 + j * 180,  20 + k * 120)
+          context.lineTo(155 + j * 180,  20 + k * 120)
+          context.lineTo(155 + j * 180, 100 + k * 120)
+          context.stroke()
+          context.closePath()
+        }
+      }
+</script>
+
+<br><br><b>Example 23-13:</b><br>
+//Filling in a complex path<br>
+ <canvas id="mycanvas11" width="320" height="320"></canvas>
+   
+  <script>
+      canvas               = O('mycanvas11')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      context.strokeStyle  = 'orange'
+      context.fillStyle    = 'yellow'
+
+      orig   = 160
+      points = 21
+      dist   = Math.PI / points * 2
+      scale1 = 150
+      scale2 = 80
+ 
+      context.beginPath()
+
+      for (j = 0 ; j < points ; ++j)
+      {
+        x = Math.sin(j * dist)
+        y = Math.cos(j * dist)
+        context.lineTo(orig + x * scale1, orig + y * scale1)
+        context.lineTo(orig + x * scale2, orig + y * scale2)
+      }
+
+      context.closePath()
+      context.stroke()
+      context.fill()
+  </script>
+ 
+ <br><br><b>Example 23-14:</b><br>
+//Creating a clip area<br>
+   <canvas id="mycanvas12" width="640" height="480"></canvas> 
+       
+    <script>
+      canvas               = O('mycanvas12')
+      context              = canvas.getContext('2d')
+
+      context.beginPath()
+
+      for (j = 0 ; j < 10 ; ++j)
+      {
+        context.moveTo(20,  j * 48)
+        context.lineTo(620, j * 48)
+        context.lineTo(620, j * 48 + 30)
+        context.lineTo(20,  j * 48 + 30)
+      }
+
+      context.stroke()
+      context.closePath()
+    </script>
+    
+<br><br><b>Example 23-15:</b><br>
+//Creating a clip area<br>
+   <canvas id="mycanvas13" width="640" height="480"></canvas> 
+   
+     <script>
+      canvas               = O('mycanvas13')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      context.fillStyle    = 'white'
+      context.strokeRect(20, 20, 600, 440) // Black border
+      context.fillRect(  20, 20, 600, 440) // White background
+
+      context.beginPath()
+
+      for (j = 0 ; j < 10 ; ++j)
+      {
+        context.moveTo(20,  j * 48)
+        context.lineTo(620, j * 48)
+        context.lineTo(620, j * 48 + 30)
+        context.lineTo(20,  j * 48 + 30)
+      }
+
+      context.clip()
+      context.closePath()
+
+      context.fillStyle   = 'blue'         // Blue sky
+      context.fillRect(20, 20,  600, 320)
+      context.fillStyle   = 'green'        // Green grass
+      context.fillRect(20, 320, 600, 140)
+      context.strokeStyle = 'orange'
+      context.fillStyle   = 'yellow'
+
+      orig   = 170
+      points = 21
+      dist   = Math.PI / points * 2
+      scale1 = 130
+      scale2 = 80
+ 
+      context.beginPath()
+
+      for (j = 0 ; j < points ; ++j)
+      {
+        x = Math.sin(j * dist)
+        y = Math.cos(j * dist)
+        context.lineTo(orig + x * scale1, orig + y * scale1)
+        context.lineTo(orig + x * scale2, orig + y * scale2)
+      }
+
+      context.closePath()
+      context.stroke()                     // Sun outline
+      context.fill()                       // Sun fill
+    </script>
+    
+ <br><br><b>Example 23-16:</b><br>
+//Creating a clip area<br>
+   <canvas id="mycanvas14" width="640" height="480"></canvas>
+   
+<script>
+      canvas               = O('mycanvas14')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      context.lineWidth    = 2
+      context.strokeStyle  = 'blue'
+
+      Math.degreesToRadians = function(degrees)
+      {
+        return degrees * Math.PI / 180
+      }
+
+      // Following is the original example code
+      //
+      // arcs =
+      // [
+      //   Math.PI,
+      //   Math.PI * 2,
+      //   Math.PI / 2,
+      //   Math.PI / 180 * 59
+      // ]
+      //
+      // Below the code now uses degrees as arguments
+
+      arcs =
+      [
+        Math.degreesToRadians(180),
+        Math.degreesToRadians(360),
+        Math.degreesToRadians(90),
+        Math.degreesToRadians(59)
+      ]
+
+      for (j = 0 ; j < 4 ; ++j)
+      {
+        context.beginPath()
+        context.arc(80 + j * 160, 80, 70, 0, arcs[j])
+        context.closePath()
+        context.stroke()
+      }
+      
+      context.strokeStyle = 'red'
+
+      for (j = 0 ; j < 4 ; ++j)
+      {
+        context.beginPath()
+        context.arc(80 + j * 160, 240, 70, 0, arcs[j])
+        context.stroke()
+        context.closePath()
+      }
+
+      context.strokeStyle = 'green'
+
+      for (j = 0 ; j < 4 ; ++j)
+      {
+        context.beginPath()
+        context.arc(80 + j * 160, 400, 70, 0, arcs[j], true)
+        context.stroke()
+        context.closePath()
+      }
+    </script>
+    
+<br><br><b>Example 23-17:</b><br>
+//Drawing eight arcs of different radii<br>
+   <canvas id="mycanvas15" width="480" height="240"></canvas>
+   
+   <script>
+      canvas               = O('mycanvas15')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+      context.strokeStyle  = 'blue'
+
+      for (j = 0 ; j <= 280 ; j += 40)
+      {
+        context.beginPath()
+        context.moveTo( 20, 20)
+        context.arcTo(240, 240, 460, 20, j)
+        context.lineTo(460, 20)
+        context.stroke()
+        context.closePath()
+      }    
+    </script>
+    
+  <br><br><b>Example 23-18:</b><br>
+//Drawing a cloud with quadratic curves<br>
+   <canvas id="mycanvas16" width="480" height="240"></canvas>
+   
+ <script>
+      canvas               = O('mycanvas16')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      context.beginPath()
+      context.moveTo(180, 60)
+      context.quadraticCurveTo(240,   0, 300,  60)
+      context.quadraticCurveTo(460,  30, 420, 100)
+      context.quadraticCurveTo(480, 210, 340, 170)
+      context.quadraticCurveTo(240, 240, 200, 170)
+      context.quadraticCurveTo(100, 200, 140, 130)
+      context.quadraticCurveTo( 40,  40, 180,  60)
+      context.fillStyle = 'white'
+      context.fill()
+      context.closePath()
+
+      // Illustrate the attractor points
+      // IE, Chrome, Opera only
+
+      // context.beginPath()
+      // context.moveTo(240,   0)
+      // context.lineTo(460,  30)
+      // context.lineTo(480, 210)
+      // context.lineTo(240, 240)
+      // context.lineTo(100, 200)
+      // context.lineTo( 40,  40)
+      // context.closePath()
+      // context.setLineDash([2,3])
+      // context.strokeStyle = 'green'
+      // context.stroke() 
+    </script>
+    
+  <br><br><b>Example 23-19:</b><br>
+//Creating a Bézier curve with two attractors<br>
+   <canvas id="mycanvas17" width="480" height="240"></canvas>
+   
+   <script>
+      canvas               = O('mycanvas17')
+      context              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      context.beginPath()
+      context.moveTo(240, 20)
+      context.bezierCurveTo(720, 480, -240, -240, 240, 220)
+      context.stroke()
+      context.closePath()
+    </script>
+    
+   <br><br><b>Example 23-20:</b><br>
+//Various ways of drawing an image on the canvas<br>
+   <canvas id="mycanvas18" width="480" height="240"></canvas>
+   
+  <script>
+      canvas               = O('mycanvas18')
+      contextX              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage1     = new Image()
+      myimage1.src = 'CHAPTER 23 - image.png'
+
+      myimage1.onload = function()
+      {
+        contextX.drawImage(myimage1,                 20,  20          )
+        contextX.drawImage(myimage1,                140,  20, 220, 220)
+        contextX.drawImage(myimage1,                380,  20,  80, 220)
+        contextX.drawImage(myimage1, 30, 30, 40, 40, 20, 140, 100, 100)
+
+        // Example of using a canvas as an image source
+        contextX.drawImage(canvas, 0, 0, 480, 260,  20, 140, 100, 100)
+      }
+    </script>
+    
+ <br><br><b>Example 23-21:</b><br>
+//Applying shadows when drawing on the canvas<br>
+   <canvas id="mycanvas19" width="480" height="190"></canvas>
+   
+ <script>
+      canvas               = O('mycanvas19')
+      context3              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage2     = new Image()
+      myimage2.src = 'CHAPTER 23 - apple.png'
+
+      orig   = 95
+      points = 21
+      dist   = Math.PI / points * 2
+      scale1 = 75
+      scale2 = 50
+
+      myimage2.onload = function()
+      {
+        context3.beginPath()
+
+        for (j = 0 ; j < points ; ++j)
+        {
+          x = Math.sin(j * dist)
+          y = Math.cos(j * dist)
+          context3.lineTo(orig + x * scale1, orig + y * scale1)
+          context3.lineTo(orig + x * scale2, orig + y * scale2)
+        }
+
+        context3.closePath()
+
+        context3.shadowOffsetX = 5
+        context3.shadowOffsetY = 5
+        context3.shadowBlur    = 6
+        context3.shadowColor   = '#444'
+        context3.fillStyle     = 'red'
+        context3.stroke()
+        context3.fill()
+
+        context3.shadowOffsetX = 2
+        context3.shadowOffsetY = 2
+        context3.shadowBlur    = 3
+        context3.shadowColor   = 'yellow'
+        context3.font          = 'bold 36pt Times'
+        context3.textBaseline  = 'top'
+        context3.fillStyle     = 'green'
+        context3.fillText('Sale now on!', 200, 5)
+
+        context3.shadowOffsetX = 3
+        context3.shadowOffsetY = 3
+        context3.shadowBlur    = 5
+        context3.shadowColor   = 'black'
+        context3.drawImage(myimage2, 245, 45)
+      }
+    </script>
+    
+  <br><br><b>Example 23-22:</b><br>
+//Manipulating image data<br>
+   <canvas id="mycanvas20" width="640" height="200"></canvas>
+   
+ <script>
+      canvas               = O('mycanvas20')
+      context4              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage3     = new Image()
+      myimage3.src = 'CHAPTER 23 - photo.jpg'
+
+      myimage3.onload = function()
+      {
+        context4.drawImage(myimage3, 0, 0)
+        idata = context4.getImageData(0, 0, myimage3.width, myimage3.height)
+
+        for (y = 0 ; y < myimage3.height ; ++y)
+        {
+          for (x = 0 ; x < myimage3.width ; ++x)
+          {
+            pos     = y * myimage3.width * 4 + x * 4
+            average =
+            (
+              idata.data[pos]     +
+              idata.data[pos + 1] +
+              idata.data[pos + 2]
+            ) / 3
+
+            idata.data[pos]     = average + 50
+            idata.data[pos + 1] = average
+            idata.data[pos + 2] = average - 50
+          }
+        }
+        context4.putImageData(idata, 320, 0)
+      }
+    </script>
+    
+  <br><br><b>Example 23-23:</b><br>
+//Using all 12 types of compositing effects<br>
+   
+   <div class="compositing">
+      <canvas class="canvas" id="c1"  width="120" height="120"></canvas>
+      <canvas class="canvas" id="c2"  width="120" height="120"></canvas>
+
+      <canvas class="canvas" id="c3"  width="120" height="120"></canvas>
+      <canvas class="canvas" id="c4"  width="120" height="120"></canvas>
+      <br>
+      &nbsp;&nbsp; source-over &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      source-in &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; source-out
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; source-atop<br>
+
+        
+      <canvas class="canvas" id="c5"  width="120" height="120"></canvas>
+      <canvas class="canvas" id="c6"  width="120" height="120"></canvas>
+      <canvas class="canvas" id="c7"  width="120" height="120"></canvas>
+      <canvas class="canvas" id="c8"  width="120" height="120"></canvas>
+      <br>
+      destination-over &nbsp; destination-in &nbsp;&nbsp;&nbsp;
+      destination-out &nbsp; destination atop<br>
+
+      <canvas class="canvas" id="c9"  width="120" height="120"></canvas>
+      <canvas class="canvas" id="c10" width="120" height="120"></canvas>
+      <canvas class="canvas" id="c11" width="120" height="120"></canvas>
+      <canvas class="canvas" id="c12" width="120" height="120"></canvas>
+      <br>
+      &nbsp;&nbsp;&nbsp; &nbsp;lighter
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; darker
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      &nbsp;copy &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;xor
+    </div>
+    
+    <script>
+      image     = new Image()
+      image.src = 'CHAPTER 23 - image.png'
+
+      image.onload = function()
+      {
+        types =
+        [
+          'source-over',     'source-in',        'source-out',
+          'source-atop',     'destination-over', 'destination-in',
+          'destination-out', 'destination-atop', 'lighter',
+          'darker',          'copy',             'xor'
+        ]
+
+        for (j = 0 ; j < 12 ; ++j)
+        {
+          canvas               = O('c' + (j + 1))
+          context              = canvas.getContext('2d')
+          S(canvas).background = 'lightblue'
+          context.fillStyle    = 'red'
+
+          context.arc(50, 50, 50, 0, Math.PI * 2, false)
+          context.fill()
+          context.globalCompositeOperation = types[j]
+          context.drawImage(image, 20, 20, 100, 100)
+        }
+      }
+    </script>
+   
+  <br><br><b>Example 23-24:</b><br>
+//Scaling up and down in size<br>
+<canvas id="mycanvas21" width="420" height="200"></canvas>
+
+<script>
+      canvas               = O('mycanvas21')
+      contextY              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage     = new Image()
+      myimage.src = 'CHAPTER 23 - image.png'
+
+      myimage.onload = function()
+      {
+        contextY.drawImage(myimage, 0, 0)
+        contextY.scale(3, 2)
+        
+        // Alternative to above using transform()
+        // context.transform(3, 0, 0, 2, 0, 0)
+
+        contextY.drawImage(myimage, 40,   0)
+        contextY.scale(.33, .5)
+        contextY.drawImage(myimage,  0, 100)
+
+        // Improved version using save() and restore()
+        //
+        // context.drawImage(myimage, 0, 0)
+        // context.save()
+        // context.scale(3, 2)
+        // context.drawImage(myimage, 40, 0)
+        // context.restore()
+        // context.drawImage(myimage, 0, 100)
+      }
+    </script>
+    
+  <br><br><b>Example 23-25:</b><br>
+//Rotating an image<br>
+<canvas id="mycanvas22" width="500" height="280"></canvas>
+
+<script>
+      canvas               = O('mycanvas22')
+      context5              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage4     = new Image()
+      myimage4.src = 'CHAPTER 23 - image.png'
+
+      myimage4.onload = function()
+      {
+        for (j = 0 ; j < 4 ; ++j)
+        {
+          context5.drawImage(myimage4, 20 + j * 120 , 20)
+          context5.rotate(Math.PI / 25)
+        }
+      }
+</script>
+
+<br><br><b>Example 23-26:</b><br>
+//Rotating objects in place<br>
+<canvas id="mycanvas23" width="500" height="140"></canvas>
+
+<script>
+      canvas               = O('mycanvas23')
+      context6              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage5     = new Image()
+      myimage5.src = 'CHAPTER 23 - image.png'
+
+      myimage5.onload = function()
+      {
+        w = myimage5.width
+        h = myimage5.height
+
+        for (j = 0 ; j < 4 ; ++j)
+        {
+          context6.save()
+          context6.translate(20 + w / 2 + j * (w + 20), 20 + h / 2)
+
+          // Alternative to the above using transform()
+          // context.transform(1, 0, 0, 1, 20 + w / 2 + j * (w + 20), 20 + h / 2)
+
+          context6.rotate(Math.PI / 5 * j)
+          context6.drawImage(myimage5, -(w / 2), -(h / 2))
+          context6.restore()
+        }
+      }
+</script>
+    
+   <br><br><b>Example 23-27:</b><br>
+//Creating an original and skewed image<br>
+<canvas id="mycanvas24" width="500" height="140"></canvas>
+
+      <script>
+      canvas               = O('mycanvas24')
+      context7              = canvas.getContext('2d')
+      S(canvas).background = 'lightblue'
+
+      myimage6     = new Image()
+      myimage6.src = 'CHAPTER 23 - image.png'
+
+      myimage6.onload = function()
+      {
+        context7.drawImage(myimage6,  20, 20)
+        context7.transform(1, 0, 1, 1, 0, 0)
+        context7.drawImage(myimage6, 140, 20)
+      }
+    </script>
+    
+                         
+</body>
+</html>

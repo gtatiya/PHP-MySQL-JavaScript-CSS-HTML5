@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CHAPTER 18 - Using Ajax</title>
+</head>
+
+<body style="text-align:center">
+
+<b style="font-size: 30px;">Learning PHP, MySQL, JavaScript, CSS & HTML5, 3e (2014)</b><br><br>
+  <b style="font-size: 20px;">CHAPTER 18 - Using Ajax</b><br><br>
+  
+  <b>Example 18-1:</b><br>
+  <!--A cross-browser Ajax function--> 
+  <script>
+  function ajaxRequest()
+  {
+    try // Non IE Browser?
+    {   // Yes
+      var request = new XMLHttpRequest()
+    }
+    catch(e1)
+    {
+      try // IE 6+?
+      {   // Yes
+        request = new ActiveXObject("Msxml2.XMLHTTP")
+      }
+      catch(e2)
+      {
+        try // IE 5?
+        {   // Yes
+          request = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        catch(e3) // There is no AJAX Support
+        { 
+          request = false
+        }
+      }
+    }
+    return request
+  }
+</script>
+
+<b>Example 18-2:</b><br>
+  <!--urlpost.html--> 
+
+    <h1>Loading a web page into a DIV</h1>
+    <div id="info">This sentence will be replaced</div>
+  
+    <script>
+      params  = "url=amazon.com/gp/aw"  
+      request = new ajaxRequest()
+    
+      request.open("POST", "CHAPTER 18 - Using Ajax.php", true)
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      request.setRequestHeader("Content-length", params.length)
+      request.setRequestHeader("Connection", "close")
+        
+      request.onreadystatechange = function()
+      {
+        if (this.readyState == 4)
+        {
+          if (this.status == 200)
+          {
+            if (this.responseText != null)
+            {
+              document.getElementById('info').innerHTML = this.responseText
+            }
+            else alert("Ajax error: No data received")
+          }
+          else alert( "Ajax error: " + this.statusText)
+        }
+      }
+      
+      request.send(params)
+    </script>
+ 
+
+
+
+
+  
+  
+</body>
+</html>
